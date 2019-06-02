@@ -73,11 +73,12 @@
 		</dependency>
 
 
-		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+		<!-- https://mvnrepository.com/artifact/mysql/	 -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.41</version>
+			<version>8.0.11</version>
+			        <scope>runtime</scope>
 		</dependency>
 
 		<!-- (jstl,servlet-api,junit) -->
