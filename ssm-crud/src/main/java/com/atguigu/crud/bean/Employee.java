@@ -18,6 +18,33 @@ public class Employee {
     
     
     /**
+	 * 无参构造器
+	 */
+	public Employee() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @param empId
+	 * @param empName
+	 * @param gender
+	 * @param email
+	 * @param dId
+	 * @param department
+	 */
+	public Employee(Integer empId, String empName, String gender,
+			String email, Integer dId ) {
+		super();
+		this.empId = empId;
+		this.empName = empName;
+		this.gender = gender;
+		this.email = email;
+		this.dId = dId;
+		//this.department = department;
+	}
+
+	/**
 	 * @return the department
 	 */
 	public Department getDepartment() {

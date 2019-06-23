@@ -1,12 +1,18 @@
 
 package com.atguigu.crud.test;
 
+import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.atguigu.crud.bean.Employee;
 import com.atguigu.crud.dao.DepartmentMapper;
+import com.atguigu.crud.dao.EmployeeMapper;
 
 /**
 * @author hery186
@@ -16,13 +22,14 @@ import com.atguigu.crud.dao.DepartmentMapper;
 /**
  * 测试dao层的工作
  * 
- * @author lee
- * 推荐spring的项目就可以使用spring的单元测试，可以自动注入我们需要的组件
- * 1，导入springtest模块	
- * 2,@@ContextConfiguration指定
+ * @author lee 推荐spring的项目就可以使用spring的单元测试，可以自动注入我们需要的组件 1，导入springtest模块
+ *         2,@@ContextConfiguration指定
+ * 
+ *         3,直接autowired要使用的
  */
 
-@ContextConfiguration(locations= {"classpath:applicationContext.xml"})
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = { "classpath:applicationContext.xml" })
 public class MapperTest {
 
 	/*
@@ -30,15 +37,31 @@ public class MapperTest {
 	 * 
 	 */
 
+	@Autowired
+	DepartmentMapper departmentMapper;
+
+	@Autowired
+	SqlSession sqlSession;
+
 	@Test
 	public void testCRUD() {
-
 		// 1,创建 SpringIOC容器
+		/*
+		 * ApplicationContext ioc = new
+		 * ClassPathXmlApplicationContext("applicationContext.xml");
+		 * 
+		 * // 2，从容器中拿出来获取mapper ioc.getBean(DepartmentMapper.class);
+		 */
 
-		ApplicationContext ioc = new ClassPathXmlApplicationContext("applicationContext.xml");
+		System.out.println(departmentMapper);
 
-		// 2，从容器中拿出来获取mapper
-		ioc.getBean(DepartmentMapper.class);
+		EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
+
+		for (int i = 0; i < 1000; i++) {
+
+			mapper.insertSelective(new Employee(null,"","M",))
+		}
+
 	}
 
 }
